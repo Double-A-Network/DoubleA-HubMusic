@@ -1,0 +1,15 @@
+name: HubMusic
+main: com.andrew121410.HubMusic.Main
+version: 0.1
+api-version: 1.15
+
+softdepend:
+  - NoteBlockAPI
+
+commands:
+  hubmusic:
+
+permissions:
+  hubmusic.command:
+    description: Allows to do hubmusic
+    default: op
