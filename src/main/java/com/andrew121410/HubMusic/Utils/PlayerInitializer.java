@@ -7,15 +7,17 @@ public class PlayerInitializer {
 
     private Main plugin;
 
-    public PlayerInitializer(Main plugin){
+    public PlayerInitializer(Main plugin) {
         this.plugin = plugin;
     }
 
-    public void load(Player player){
-
+    public void load(Player player) {
+        if (this.plugin.getSongPlayer().getRadioSongPlayer() != null) {
+            this.plugin.getSongPlayer().getRadioSongPlayer().addPlayer(player);
+        }
     }
 
-    public void unload(Player player){
-
+    public void unload(Player player) {
+        this.plugin.getSongPlayer().getRadioSongPlayer().removePlayer(player);
     }
 }

@@ -17,9 +17,6 @@ public class OnPlayerJoinEvent implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (this.plugin.getSongPlayer().getRadioSongPlayer() != null) {
-            this.plugin.getSongPlayer().getRadioSongPlayer().addPlayer(event.getPlayer());
-        }
-
+        this.plugin.getPlayerInitializer().load(event.getPlayer());
     }
 }

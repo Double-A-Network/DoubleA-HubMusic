@@ -7,8 +7,10 @@ import org.bukkit.craftbukkit.libs.org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SongLoader {
 
@@ -21,25 +23,20 @@ public class SongLoader {
         this.plugin = plugin;
         this.songsCache = this.plugin.getSetListMap().getSongMap();
         this.songsFile = new File(this.plugin.getDataFolder() + File.separator + "songs");
+
+        if (!this.songsFile.isDirectory()) {
+            this.songsFile.mkdir();
+            this.plugin.getServer().getConsoleSender().sendMessage("[HubMusic] Has created songs dir in HubMusic plugin folder.");
+        }
     }
 
     public List<File> findAllSongs() {
-        List<File> files = new ArrayList<>();
-
-        if (songsFile == null) {
-            plugin.getServer().broadcastMessage("SONGSFILE == null");
-            throw new NullPointerException("SONGS FILE == NULL");
-        }
-
-        if (songsFile.listFiles() == null) {
-            return null;
-        }
-
-        for (File file : songsFile.listFiles()) if (file.getName().endsWith(".nbs")) files.add(file);
-
+        List<File> files;
+        files = Arrays.stream(songsFile.listFiles()).filter(file -> file.getName().endsWith(".nbs")).collect(Collectors.toList());
         return files;
     }
 
+    //Not used for now.
     public List<Song> loadSongs() {
         List<File> songsFiles = findAllSongs();
 
@@ -50,19 +47,12 @@ public class SongLoader {
         return songs;
     }
 
-    public List<String> getAllSongNames() {
-        List<String> names = new ArrayList<>();
-        List<Song> songs = loadSongs();
-        if (songs == null) return null;
-        for (Song loadSong : songs) names.add(loadSong.getTitle());
-        return names;
-    }
-
     public void loadSongCache() {
         List<File> songFiles = findAllSongs();
 
         if (songFiles == null) {
             this.plugin.getServer().broadcastMessage("LoadSongCache could not be loaded.");
+            return;
         }
 
         for (File songFile : songFiles) {

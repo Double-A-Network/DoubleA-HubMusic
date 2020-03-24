@@ -16,7 +16,7 @@ public class OnPlayerLeaveEvent implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerQuitEvent event) {
-        this.plugin.getSongPlayer().getRadioSongPlayer().removePlayer(event.getPlayer());
+    public void onQuit(PlayerQuitEvent event) {
+        this.plugin.getPlayerInitializer().unload(event.getPlayer());
     }
 }

@@ -15,6 +15,7 @@ public class Main extends JavaPlugin {
     private static Main plugin;
 
     private SetListMap setListMap;
+
     private PlayerInitializer playerInitializer;
 
     private SongLoader songLoader;
@@ -65,16 +66,16 @@ public class Main extends JavaPlugin {
         return setListMap;
     }
 
-    public PlayerInitializer getPlayerInitializer() {
-        return playerInitializer;
-    }
-
     public SongLoader getSongLoader() {
         return songLoader;
     }
 
     public SongPlayer getSongPlayer() {
         return songPlayer;
+    }
+
+    public PlayerInitializer getPlayerInitializer() {
+        return playerInitializer;
     }
 
     public static Main getPlugin() {
