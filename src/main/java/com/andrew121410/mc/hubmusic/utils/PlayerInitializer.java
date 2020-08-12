@@ -1,6 +1,6 @@
-package com.andrew121410.HubMusic.Utils;
+package com.andrew121410.mc.hubmusic.utils;
 
-import com.andrew121410.HubMusic.Main;
+import com.andrew121410.mc.hubmusic.Main;
 import org.bukkit.entity.Player;
 
 public class PlayerInitializer {

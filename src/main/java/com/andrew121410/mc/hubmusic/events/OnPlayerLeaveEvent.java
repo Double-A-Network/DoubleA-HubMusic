@@ -1,6 +1,6 @@
-package com.andrew121410.HubMusic.Events;
+package com.andrew121410.mc.hubmusic.events;
 
-import com.andrew121410.HubMusic.Main;
+import com.andrew121410.mc.hubmusic.Main;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

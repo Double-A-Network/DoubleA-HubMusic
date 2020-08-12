@@ -1,7 +1,7 @@
-package com.andrew121410.HubMusic.Commands;
+package com.andrew121410.mc.hubmusic.commands;
 
-import com.andrew121410.HubMusic.Main;
-import com.andrew121410.HubMusic.Utils.Utils;
+import com.andrew121410.mc.hubmusic.Main;
+import com.andrew121410.mc.hubmusic.utils.Utils;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

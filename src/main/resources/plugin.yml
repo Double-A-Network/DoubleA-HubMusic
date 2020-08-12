@@ -1,10 +1,9 @@
 name: HubMusic
-main: com.andrew121410.HubMusic.Main
-version: 0.1
-api-version: 1.15
+main: com.andrew121410.mc.hubmusic.Main
+version: 1.0
+api-version: 1.16
 
-softdepend:
-  - NoteBlockAPI
+depend: [NoteBlockAPI]
 
 commands:
   hubmusic:

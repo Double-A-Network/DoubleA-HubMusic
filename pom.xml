@@ -5,8 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <name>HubMusic</name>
-
-    <groupId>com.andrew121410</groupId>
+    <groupId>com.andrew121410.mc</groupId>
     <artifactId>HubMusic</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -36,20 +35,17 @@
         </plugins>
     </build>
 
-
     <repositories>
+        <repository>
+            <id>spigot-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+        </repository>
 
-    <repository>
-        <id>spigot-repo</id>
-        <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-    </repository>
-
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-
-</repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <!--Spigot API-->
@@ -57,24 +53,16 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.15.2-R0.1-SNAPSHOT</version>
+            <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>com.github.koca2000</groupId>
             <artifactId>NoteBlockAPI</artifactId>
-            <version>1.4.4</version>
+            <version>1.6.0</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
 </project>

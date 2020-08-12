@@ -1,9 +1,8 @@
-package com.andrew121410.HubMusic.Utils;
+package com.andrew121410.mc.hubmusic.utils;
 
-import com.andrew121410.HubMusic.Main;
+import com.andrew121410.mc.hubmusic.Main;
 import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder;
-import org.bukkit.craftbukkit.libs.org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,22 +16,22 @@ public class SongLoader {
     private Map<String, File> songsCache;
 
     private Main plugin;
-    private File songsFile;
+    private File songsFolder;
 
     public SongLoader(Main plugin) {
         this.plugin = plugin;
         this.songsCache = this.plugin.getSetListMap().getSongMap();
-        this.songsFile = new File(this.plugin.getDataFolder() + File.separator + "songs");
+        this.songsFolder = new File(this.plugin.getDataFolder() + File.separator + "songs");
 
-        if (!this.songsFile.isDirectory()) {
-            this.songsFile.mkdir();
+        if (!this.songsFolder.isDirectory()) {
+            this.songsFolder.mkdir();
             this.plugin.getServer().getConsoleSender().sendMessage("[HubMusic] Has created songs dir in HubMusic plugin folder.");
         }
     }
 
     public List<File> findAllSongs() {
         List<File> files;
-        files = Arrays.stream(songsFile.listFiles()).filter(file -> file.getName().endsWith(".nbs")).collect(Collectors.toList());
+        files = Arrays.stream(songsFolder.listFiles()).filter(file -> file.getName().endsWith(".nbs")).collect(Collectors.toList());
         return files;
     }
 
@@ -56,8 +55,8 @@ public class SongLoader {
         }
 
         for (File songFile : songFiles) {
-            String without = FilenameUtils.getBaseName(songFile.getName());
-            this.songsCache.putIfAbsent(without, songFile);
+            String nameOfFile = songFile.getName().replaceFirst("[.][^.]+$", "");
+            this.songsCache.putIfAbsent(nameOfFile, songFile);
         }
     }
 }

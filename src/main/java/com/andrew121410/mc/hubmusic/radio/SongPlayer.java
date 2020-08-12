@@ -1,6 +1,6 @@
-package com.andrew121410.HubMusic.Radio;
+package com.andrew121410.mc.hubmusic.radio;
 
-import com.andrew121410.HubMusic.Main;
+import com.andrew121410.mc.hubmusic.Main;
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode;
 import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.songplayer.PositionSongPlayer;

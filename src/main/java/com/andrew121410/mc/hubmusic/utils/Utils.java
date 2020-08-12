@@ -1,4 +1,4 @@
-package com.andrew121410.HubMusic.Utils;
+package com.andrew121410.mc.hubmusic.utils;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;

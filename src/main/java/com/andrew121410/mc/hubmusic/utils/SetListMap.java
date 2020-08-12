@@ -1,4 +1,4 @@
-package com.andrew121410.HubMusic.Utils;
+package com.andrew121410.mc.hubmusic.utils;
 
 import java.io.File;
 import java.util.HashMap;

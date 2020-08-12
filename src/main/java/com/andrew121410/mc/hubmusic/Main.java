@@ -1,13 +1,13 @@
-package com.andrew121410.HubMusic;
+package com.andrew121410.mc.hubmusic;
 
-import com.andrew121410.HubMusic.Commands.HubMusicCMD;
-import com.andrew121410.HubMusic.Events.OnPlayerJoinEvent;
-import com.andrew121410.HubMusic.Events.OnPlayerLeaveEvent;
-import com.andrew121410.HubMusic.Radio.Events.OnSongEndEvent;
-import com.andrew121410.HubMusic.Radio.SongPlayer;
-import com.andrew121410.HubMusic.Utils.PlayerInitializer;
-import com.andrew121410.HubMusic.Utils.SetListMap;
-import com.andrew121410.HubMusic.Utils.SongLoader;
+import com.andrew121410.mc.hubmusic.commands.HubMusicCMD;
+import com.andrew121410.mc.hubmusic.events.OnPlayerJoinEvent;
+import com.andrew121410.mc.hubmusic.events.OnPlayerLeaveEvent;
+import com.andrew121410.mc.hubmusic.radio.SongPlayer;
+import com.andrew121410.mc.hubmusic.radio.events.OnSongEndEvent;
+import com.andrew121410.mc.hubmusic.utils.PlayerInitializer;
+import com.andrew121410.mc.hubmusic.utils.SetListMap;
+import com.andrew121410.mc.hubmusic.utils.SongLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin {
@@ -21,12 +21,13 @@ public class Main extends JavaPlugin {
     private SongLoader songLoader;
     private SongPlayer songPlayer;
 
+    @Override
     public void onEnable() {
         plugin = this;
         this.setListMap = new SetListMap();
         this.playerInitializer = new PlayerInitializer(this);
 
-        if (this.getDataFolder().isDirectory()) {
+        if (!this.getDataFolder().isDirectory()) {
             this.getDataFolder().mkdir();
         }
 
@@ -58,6 +59,7 @@ public class Main extends JavaPlugin {
         this.reloadConfig();
     }
 
+    @Override
     public void onDisable() {
         this.setListMap.getSongMap().clear();
     }
