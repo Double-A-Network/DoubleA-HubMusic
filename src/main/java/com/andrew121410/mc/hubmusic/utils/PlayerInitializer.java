@@ -18,6 +18,8 @@ public class PlayerInitializer {
     }
 
     public void unload(Player player) {
-        this.plugin.getSongPlayer().getRadioSongPlayer().removePlayer(player);
+        if (this.plugin.getSongPlayer().getRadioSongPlayer() != null) {
+            this.plugin.getSongPlayer().getRadioSongPlayer().removePlayer(player);
+        }
     }
 }
