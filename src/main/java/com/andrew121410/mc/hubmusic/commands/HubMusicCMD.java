@@ -1,7 +1,8 @@
 package com.andrew121410.mc.hubmusic.commands;
 
-import com.andrew121410.mc.hubmusic.Main;
+import com.andrew121410.mc.hubmusic.HubMusic;
 import com.andrew121410.mc.hubmusic.utils.Utils;
+import com.andrew121410.mc.world16utils.chat.Translate;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,9 +11,9 @@ import org.bukkit.entity.Player;
 
 public class HubMusicCMD implements CommandExecutor {
 
-    private Main plugin;
+    private HubMusic plugin;
 
-    public HubMusicCMD(Main plugin) {
+    public HubMusicCMD(HubMusic plugin) {
         this.plugin = plugin;
 
         this.plugin.getCommand("hubmusic").setExecutor(this);
@@ -34,11 +35,11 @@ public class HubMusicCMD implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            player.sendMessage("/hubmusic reload");
-            player.sendMessage("/hubmusic stop");
-            player.sendMessage("/hubmusic start");
-            player.sendMessage("/hubmusic displaySongs");
-            player.sendMessage("/hubmusic config");
+            player.sendMessage(Translate.color("&6/hubmusic start"));
+            player.sendMessage(Translate.color("&6/hubmusic stop"));
+            player.sendMessage(Translate.color("&6/hubmusic reload"));
+            player.sendMessage(Translate.color("&6/hubmusic displaySongs"));
+            player.sendMessage(Translate.color("&6/hubmusic config"));
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             this.plugin.getSongPlayer().stop();
@@ -90,6 +91,11 @@ public class HubMusicCMD implements CommandExecutor {
                 this.plugin.saveConfig();
                 player.sendMessage("Location has been set.");
                 return true;
+            } else if (args.length == 3 && args[1].equalsIgnoreCase("joinServerTimeDelay")) {
+                String value = args[2];
+                this.plugin.getConfig().set("joinServerTimeDelay", Integer.parseInt(value));
+                this.plugin.saveConfig();
+                player.sendMessage("joinServerTimeDelay has been set to " + value);
             }
         }
 

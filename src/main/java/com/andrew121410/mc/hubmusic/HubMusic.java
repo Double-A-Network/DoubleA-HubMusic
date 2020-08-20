@@ -10,9 +10,9 @@ import com.andrew121410.mc.hubmusic.utils.SetListMap;
 import com.andrew121410.mc.hubmusic.utils.SongLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class Main extends JavaPlugin {
+public class HubMusic extends JavaPlugin {
 
-    private static Main plugin;
+    private static HubMusic plugin;
 
     private SetListMap setListMap;
 
@@ -80,7 +80,7 @@ public class Main extends JavaPlugin {
         return playerInitializer;
     }
 
-    public static Main getPlugin() {
+    public static HubMusic getPlugin() {
         return plugin;
     }
 }

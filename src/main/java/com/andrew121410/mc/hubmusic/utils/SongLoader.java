@@ -1,6 +1,6 @@
 package com.andrew121410.mc.hubmusic.utils;
 
-import com.andrew121410.mc.hubmusic.Main;
+import com.andrew121410.mc.hubmusic.HubMusic;
 import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder;
 
@@ -15,10 +15,10 @@ public class SongLoader {
 
     private Map<String, File> songsCache;
 
-    private Main plugin;
+    private HubMusic plugin;
     private File songsFolder;
 
-    public SongLoader(Main plugin) {
+    public SongLoader(HubMusic plugin) {
         this.plugin = plugin;
         this.songsCache = this.plugin.getSetListMap().getSongMap();
         this.songsFolder = new File(this.plugin.getDataFolder() + File.separator + "songs");

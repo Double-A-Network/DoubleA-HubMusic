@@ -1,5 +1,5 @@
 name: HubMusic
-main: com.andrew121410.mc.hubmusic.Main
+main: com.andrew121410.mc.hubmusic.HubMusic
 version: 1.0
 api-version: 1.16
 

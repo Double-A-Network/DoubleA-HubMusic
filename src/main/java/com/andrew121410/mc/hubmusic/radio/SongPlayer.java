@@ -1,6 +1,6 @@
 package com.andrew121410.mc.hubmusic.radio;
 
-import com.andrew121410.mc.hubmusic.Main;
+import com.andrew121410.mc.hubmusic.HubMusic;
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode;
 import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.songplayer.PositionSongPlayer;
@@ -17,11 +17,11 @@ public class SongPlayer {
 
     private Map<String, File> songsCache;
 
-    private Main plugin;
+    private HubMusic plugin;
 
     private PositionSongPlayer radioSongPlayer;
 
-    public SongPlayer(Main plugin) {
+    public SongPlayer(HubMusic plugin) {
         this.plugin = plugin;
         this.songsCache = this.plugin.getSetListMap().getSongMap();
     }

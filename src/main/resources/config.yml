@@ -1,3 +1,4 @@
 isEnabled: 'true'
 volume: '50'
 distance: '16'
+joinServerTimeDelay: '3'
