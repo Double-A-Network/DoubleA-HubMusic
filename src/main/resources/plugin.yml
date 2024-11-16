@@ -1,9 +1,7 @@
-name: HubMusic
+name: DoubleA-HubMusic
 main: com.andrew121410.mc.hubmusic.HubMusic
 version: 1.0
-api-version: 1.16
-
-depend: [NoteBlockAPI]
+api-version: 1.21
 
 commands:
   hubmusic:

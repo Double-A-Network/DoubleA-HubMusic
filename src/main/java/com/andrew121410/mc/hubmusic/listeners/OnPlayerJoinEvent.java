@@ -1,4 +1,4 @@
-package com.andrew121410.mc.hubmusic.events;
+package com.andrew121410.mc.hubmusic.listeners;
 
 import com.andrew121410.mc.hubmusic.HubMusic;
 import org.bukkit.event.EventHandler;

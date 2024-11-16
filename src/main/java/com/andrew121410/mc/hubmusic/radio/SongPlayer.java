@@ -28,6 +28,12 @@ public class SongPlayer {
 
     public Song pickRandomSong() {
         String[] keys = this.songsCache.keySet().toArray(new String[0]);
+
+        // If there are no songs in the cache, return null.
+        if (keys.length == 0) {
+            return null;
+        }
+
         String key = keys[new Random().nextInt(keys.length)];
         File file = this.songsCache.get(key);
         return NBSDecoder.parse(file);
@@ -39,6 +45,11 @@ public class SongPlayer {
         }
 
         Song song = pickRandomSong();
+        if (song == null) {
+            this.plugin.getLogger().warning("No songs found in the cache.");
+            return;
+        }
+
         this.radioSongPlayer = new PositionSongPlayer(song);
 
         for (Player onlinePlayer : this.plugin.getServer().getOnlinePlayers()) {
