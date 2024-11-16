@@ -3,6 +3,8 @@ main: com.andrew121410.mc.hubmusic.HubMusic
 version: 1.0
 api-version: 1.21
 
+depend: [NoteBlockAPI]
+
 commands:
   hubmusic:
 

@@ -62,7 +62,7 @@ repositories {
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
     compileOnly("com.github.World1-6.World1-6Utils:World1-6Utils-Plugin:e8e9850ea7")
-    implementation(files("libs/NoteBlockAPI.jar"))
+    compileOnly(files("libs/NoteBlockAPI.jar"))
 }
 
 publishing {
