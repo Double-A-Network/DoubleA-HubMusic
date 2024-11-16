@@ -3,6 +3,7 @@ package com.andrew121410.mc.hubmusic.commands;
 import com.andrew121410.mc.hubmusic.HubMusic;
 import com.andrew121410.mc.hubmusic.utils.Utils;
 import com.andrew121410.mc.world16utils.chat.Translate;
+import com.andrew121410.mc.world16utils.config.UnlinkedWorldLocation;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,13 +22,10 @@ public class HubMusicCMD implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String idk, String[] args) {
-
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player player)) {
             sender.sendMessage("Only players can do this command.");
             return true;
         }
-
-        Player player = (Player) sender;
 
         if (!player.hasPermission("hubmusic.command")) {
             player.sendMessage("You don't have permission to use this command.");
@@ -55,11 +53,7 @@ public class HubMusicCMD implements CommandExecutor {
             player.sendMessage("HubMusic has started.");
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("displaySongs")) {
-            player.sendMessage("Displaying all songs in songCache: ");
-            this.plugin.getSetListMap().getSongMap().forEach((k, v) -> {
-                player.sendMessage("Key: " + k + " Value: " + v);
-            });
-            player.sendMessage("DONE...");
+            this.plugin.getSetListMap().getSongMap().forEach((k, v) -> player.sendMessage("Key: " + k + " Value: " + v));
         } else if (args[0].equalsIgnoreCase("config")) {
             if (args.length == 1) {
                 player.sendMessage("/hubmusic config isEnabled <Value>");
@@ -87,9 +81,10 @@ public class HubMusicCMD implements CommandExecutor {
                 return true;
             } else if (args.length == 2 && args[1].equalsIgnoreCase("location")) {
                 Block block = Utils.getBlockPlayerIsLookingAt(player);
-                this.plugin.getConfig().set("Location", block.getLocation());
+                UnlinkedWorldLocation unlinkedWorldLocation = new UnlinkedWorldLocation(block.getLocation());
+                this.plugin.getConfig().set("Location", unlinkedWorldLocation);
                 this.plugin.saveConfig();
-                player.sendMessage("Location has been set.");
+                player.sendMessage(Translate.miniMessage("<gold>Location has been set!"));
                 return true;
             } else if (args.length == 3 && args[1].equalsIgnoreCase("joinServerTimeDelay")) {
                 String value = args[2];

@@ -1,11 +1,11 @@
 package com.andrew121410.mc.hubmusic.radio;
 
 import com.andrew121410.mc.hubmusic.HubMusic;
+import com.andrew121410.mc.world16utils.config.UnlinkedWorldLocation;
 import com.xxmicloxx.NoteBlockAPI.model.RepeatMode;
 import com.xxmicloxx.NoteBlockAPI.model.Song;
 import com.xxmicloxx.NoteBlockAPI.songplayer.PositionSongPlayer;
 import com.xxmicloxx.NoteBlockAPI.utils.NBSDecoder;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import java.io.File;
@@ -60,8 +60,15 @@ public class SongPlayer {
         if (s == null) return;
         String a = this.plugin.getConfig().getString("distance");
         if (a == null) return;
-        Location location = (Location) this.plugin.getConfig().get("Location");
-        if (location == null) return;
+        UnlinkedWorldLocation location = (UnlinkedWorldLocation) this.plugin.getConfig().get("Location");
+        if (location == null) {
+            this.plugin.getLogger().warning("Location is null. We are in SongPlayer.start()");
+            return;
+        }
+        if (!location.isWorldLoaded()) {
+            this.plugin.getLogger().warning("World is not loaded. We are in SongPlayer.start()");
+            return;
+        }
 
         byte byE = Byte.parseByte(s);
         this.radioSongPlayer.setVolume(byE);
