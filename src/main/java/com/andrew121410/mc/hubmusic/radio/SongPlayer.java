@@ -15,10 +15,9 @@ import java.util.UUID;
 
 public class SongPlayer {
 
-    private Map<String, File> songsCache;
+    private final Map<String, File> songsCache;
 
-    private HubMusic plugin;
-
+    private final HubMusic plugin;
     private PositionSongPlayer radioSongPlayer;
 
     public SongPlayer(HubMusic plugin) {

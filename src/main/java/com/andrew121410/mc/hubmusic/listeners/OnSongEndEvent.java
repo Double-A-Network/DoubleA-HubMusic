@@ -1,4 +1,4 @@
-package com.andrew121410.mc.hubmusic.radio.events;
+package com.andrew121410.mc.hubmusic.listeners;
 
 import com.andrew121410.mc.hubmusic.HubMusic;
 import com.xxmicloxx.NoteBlockAPI.event.SongEndEvent;

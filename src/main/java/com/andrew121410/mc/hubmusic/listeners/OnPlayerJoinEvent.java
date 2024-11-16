@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class OnPlayerJoinEvent implements Listener {
 
-    private HubMusic plugin;
+    private final HubMusic plugin;
 
     public OnPlayerJoinEvent(HubMusic plugin) {
         this.plugin = plugin;
@@ -17,6 +17,11 @@ public class OnPlayerJoinEvent implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+        // Try starting the song player if it's not already running.
+        if (this.plugin.getSongPlayer().getRadioSongPlayer() == null) {
+            this.plugin.getSongPlayer().start();
+        }
+
         this.plugin.getPlayerInitializer().load(event.getPlayer());
     }
 }

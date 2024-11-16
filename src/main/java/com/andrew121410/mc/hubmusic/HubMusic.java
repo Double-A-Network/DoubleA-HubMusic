@@ -4,7 +4,7 @@ import com.andrew121410.mc.hubmusic.commands.HubMusicCMD;
 import com.andrew121410.mc.hubmusic.listeners.OnPlayerJoinEvent;
 import com.andrew121410.mc.hubmusic.listeners.OnPlayerLeaveEvent;
 import com.andrew121410.mc.hubmusic.radio.SongPlayer;
-import com.andrew121410.mc.hubmusic.radio.events.OnSongEndEvent;
+import com.andrew121410.mc.hubmusic.listeners.OnSongEndEvent;
 import com.andrew121410.mc.hubmusic.utils.PlayerInitializer;
 import com.andrew121410.mc.hubmusic.utils.SetListMap;
 import com.andrew121410.mc.hubmusic.utils.SongLoader;
