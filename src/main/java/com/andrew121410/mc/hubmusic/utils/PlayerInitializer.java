@@ -6,7 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public class PlayerInitializer {
 
-    private HubMusic plugin;
+    private final HubMusic plugin;
 
     public PlayerInitializer(HubMusic plugin) {
         this.plugin = plugin;

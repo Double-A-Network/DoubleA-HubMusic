@@ -4,11 +4,11 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SetListMap {
+public class MemoryHolder {
 
-    private Map<String, File> songNamesMap;
+    private final Map<String, File> songNamesMap;
 
-    public SetListMap() {
+    public MemoryHolder() {
         this.songNamesMap = new HashMap<>();
     }
 

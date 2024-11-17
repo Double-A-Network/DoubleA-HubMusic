@@ -3,18 +3,18 @@ package com.andrew121410.mc.hubmusic;
 import com.andrew121410.mc.hubmusic.commands.HubMusicCMD;
 import com.andrew121410.mc.hubmusic.listeners.OnPlayerJoinEvent;
 import com.andrew121410.mc.hubmusic.listeners.OnPlayerLeaveEvent;
-import com.andrew121410.mc.hubmusic.radio.SongPlayer;
+import com.andrew121410.mc.hubmusic.song.SongPlayer;
 import com.andrew121410.mc.hubmusic.listeners.OnSongEndEvent;
 import com.andrew121410.mc.hubmusic.utils.PlayerInitializer;
-import com.andrew121410.mc.hubmusic.utils.SetListMap;
-import com.andrew121410.mc.hubmusic.utils.SongLoader;
+import com.andrew121410.mc.hubmusic.utils.MemoryHolder;
+import com.andrew121410.mc.hubmusic.song.SongLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class HubMusic extends JavaPlugin {
 
     private static HubMusic plugin;
 
-    private SetListMap setListMap;
+    private MemoryHolder memoryHolder;
 
     private PlayerInitializer playerInitializer;
 
@@ -24,36 +24,32 @@ public class HubMusic extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
-        this.setListMap = new SetListMap();
+        this.memoryHolder = new MemoryHolder();
         this.playerInitializer = new PlayerInitializer(this);
-
-        if (!this.getDataFolder().isDirectory()) {
-            this.getDataFolder().mkdir();
-        }
 
         this.songLoader = new SongLoader(this);
         this.songLoader.loadSongCache();
 
         this.songPlayer = new SongPlayer(this);
 
-        regConfig();
-        regEvents();
-        regCommands();
+        registerConfig();
+        registerListeners();
+        registerCommands();
 
         this.songPlayer.start();
     }
 
-    public void regEvents() {
+    public void registerListeners() {
         new OnPlayerJoinEvent(plugin);
         new OnPlayerLeaveEvent(plugin);
         new OnSongEndEvent(plugin);
     }
 
-    public void regCommands() {
+    public void registerCommands() {
         new HubMusicCMD(this);
     }
 
-    public void regConfig() {
+    public void registerConfig() {
         this.getConfig().options().copyDefaults(true);
         this.saveConfig();
         this.reloadConfig();
@@ -61,11 +57,11 @@ public class HubMusic extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        this.setListMap.getSongMap().clear();
+        this.memoryHolder.getSongMap().clear();
     }
 
-    public SetListMap getSetListMap() {
-        return setListMap;
+    public MemoryHolder getSetListMap() {
+        return memoryHolder;
     }
 
     public SongLoader getSongLoader() {

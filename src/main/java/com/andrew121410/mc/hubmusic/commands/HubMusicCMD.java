@@ -1,23 +1,31 @@
 package com.andrew121410.mc.hubmusic.commands;
 
 import com.andrew121410.mc.hubmusic.HubMusic;
-import com.andrew121410.mc.hubmusic.utils.Utils;
 import com.andrew121410.mc.world16utils.chat.Translate;
 import com.andrew121410.mc.world16utils.config.UnlinkedWorldLocation;
+import com.andrew121410.mc.world16utils.player.PlayerUtils;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-public class HubMusicCMD implements CommandExecutor {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class HubMusicCMD implements CommandExecutor, TabCompleter {
 
     private HubMusic plugin;
+
+    private static final List<String> COMMANDS = Arrays.asList("start", "stop", "reload", "displaySongs", "config");
 
     public HubMusicCMD(HubMusic plugin) {
         this.plugin = plugin;
 
         this.plugin.getCommand("hubmusic").setExecutor(this);
+        this.plugin.getCommand("hubmusic").setTabCompleter(this);
     }
 
     @Override
@@ -41,16 +49,17 @@ public class HubMusicCMD implements CommandExecutor {
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("reload")) {
             this.plugin.getSongPlayer().stop();
+            this.plugin.getSongPlayer().reloadConfigOptions();
             this.plugin.getSongPlayer().start();
-            player.sendMessage("HubMusic has been reloaded.");
+            player.sendMessage(Translate.miniMessage("<gold>HubMusic has been reloaded."));
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("stop")) {
             this.plugin.getSongPlayer().stop();
-            player.sendMessage("HubMusic has stoped.");
+            player.sendMessage(Translate.miniMessage("<red>HubMusic has stopped."));
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("start")) {
             this.plugin.getSongPlayer().start();
-            player.sendMessage("HubMusic has started.");
+            player.sendMessage(Translate.miniMessage("<green>HubMusic has started."));
             return true;
         } else if (args.length == 1 && args[0].equalsIgnoreCase("displaySongs")) {
             this.plugin.getSetListMap().getSongMap().forEach((k, v) -> player.sendMessage("Key: " + k + " Value: " + v));
@@ -80,7 +89,7 @@ public class HubMusicCMD implements CommandExecutor {
                 player.sendMessage("distance is now set to " + value);
                 return true;
             } else if (args.length == 2 && args[1].equalsIgnoreCase("location")) {
-                Block block = Utils.getBlockPlayerIsLookingAt(player);
+                Block block = PlayerUtils.getBlockPlayerIsLookingAt(player);
                 UnlinkedWorldLocation unlinkedWorldLocation = new UnlinkedWorldLocation(block.getLocation());
                 this.plugin.getConfig().set("Location", unlinkedWorldLocation);
                 this.plugin.saveConfig();
@@ -95,5 +104,25 @@ public class HubMusicCMD implements CommandExecutor {
         }
 
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+        if (args.length == 1) {
+            return filterSuggestions(COMMANDS, args[0]);
+        } else if (args.length == 2 && args[0].equalsIgnoreCase("config")) {
+            return filterSuggestions(Arrays.asList("isEnabled", "volume", "distance", "location", "joinServerTimeDelay"), args[1]);
+        }
+        return new ArrayList<>();
+    }
+
+    private List<String> filterSuggestions(List<String> suggestions, String input) {
+        List<String> filtered = new ArrayList<>();
+        for (String suggestion : suggestions) {
+            if (suggestion.toLowerCase().startsWith(input.toLowerCase())) {
+                filtered.add(suggestion);
+            }
+        }
+        return filtered;
     }
 }
